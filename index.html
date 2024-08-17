@@ -1,154 +1,18 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Countdown Timer</title>
-    </head>
-    <body>
-        <table>
-            <thead>
-                <tr>
-                    <th>Enter Date</th>
-                    <th>Enter Time</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><input type="date" id="date" ></td>
-                    <td><input type="time" id="time" ></td>
-                </tr>
-            </tbody>
-        </table>
-        <button id="calculate">Calculate</button>
-        <button id="stop">Stop</button>
-        <button id="reset">Reset</button>
-
-        <div class="countdown">
-            <div>
-                <p class="heading">DAY</p>
-                <div class="time" id="countdown-days">0</div>
-            </div>
-            <div>
-                <p class="heading">HOURS</p>
-                <div class="time" id="countdown-hours">0</div>
-            </div>
-            <div>
-                <p class="heading">MINUTES</p>
-                <div class="time" id="countdown-minutes">0</div>
-            </div>
-            <div>
-                <p class="heading">SECONDS</p>
-                <div class="time" id="countdown-seconds">0</div>
-            </div>
-        </div>
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-
-body {
-    text-align: center;
-    background-color: #836a8d;
-    font-family: 'Poppins', sans-serif;
-}
-
-h1 {
-    color: #F5F5F5;
-    font-size: 40px;
-}
-
-table {
-    margin: auto;
-}
-
-th {
-    color: #FFFFFF;
-}
-
-input {
-    font-size: 20px;
-    padding: 5px;
-    border-radius: 5px;
-}
-
-button {
-    min-width: 120px;
-    margin: 20px 10px;
-    padding: 10px;
-    font-size: 20px;
-    background-color: #FFFFFF;
-    border-radius: 5px;
-    font-weight: 600;
-}
-
-.countdown {
-    display: flex;
-    justify-content: center;
-}
-
-.heading {
-    color: #F5F5F5;
-    font-size: 18px;
-    text-transform: uppercase;
-}
-
-.time {
-    background-color: #9067c0;
-    color: #FFFFFF;
-    font-size: 100px;
-    width: 150px;
-    margin: 0 10px;
-    border-radius: 3em;
-}
-        </style>
-<script>
-    window.onload = () => {
-    document.querySelector('#calculate').onclick = calculate;
-    document.querySelector('#reset').onclick = reset;
-}
-
-function calculate () {
-    const date = document.querySelector("#date").value;
-    const time = document.querySelector("#time").value;
-
-    const stop = document.querySelector('#stop');
-    
-    const endTime = new Date(date + " " + time);
-
-    const interval = setInterval(() => calculateTime(endTime), 1000);
-
-    stop.addEventListener('click', () => {
-        clearInterval(interval);
-    })
-}
-
-function calculateTime(endTime) {
-    const currentTime = new Date();
-
-    const days = document.querySelector('#countdown-days');
-    const hours = document.querySelector('#countdown-hours');
-    const minutes = document.querySelector('#countdown-minutes');
-    const seconds = document.querySelector('#countdown-seconds');
-
-    if (endTime > currentTime) {
-        const timeLeft = (endTime - currentTime) / 1000;
-
-        console.log(timeLeft);
-        days.innerText = Math.floor(timeLeft / (24 * 60 * 60));
-        hours.innerText = Math.floor((timeLeft / (60 * 60)) % 24);
-        minutes.innerText = Math.floor((timeLeft / 60) % 60);
-        seconds.innerText = Math.floor(timeLeft % 60);
-    } else {
-        days.innerText = 0
-        hours.innerText = 0
-        minutes.innerText = 0
-        seconds.innerText = 0
-    }
-}
-
-function reset() {
-    document.querySelector('#countdown-days').innerText = 0;
-    document.querySelector('#countdown-hours').innerText = 0;
-    document.querySelector('#countdown-minutes').innerText = 0;
-    document.querySelector('#countdown-seconds').innerText = 0;
-}
-</script>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro App</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+    <div class="pomodoro-container">
+        <div class="timer" id="timer">25:00</div>
+        <button id="startBtn">Start</button>
+        <button id="pauseBtn">Pause</button>
+        <button id="resetBtn">Reset</button>
+    </div>
+    <script src="js.js"></script>
+</body>
 </html>
